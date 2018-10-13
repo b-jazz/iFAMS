@@ -73,6 +73,9 @@ for i in range(0, len(chargestatesr)):
     paddedcsdata = np.lib.pad(csdata, (np.int_(leftzeroes), np.int_(rightzeroes)), 'constant', constant_values=(0, 0))
     IFT = np.fft.ifft(paddedcsdata)
     if args["domain"] == "real":
+        # python3 has a builtin truncate operator. you could replace the next line with this:
+        # ABIFT.append(np.real(IFT[(len(IFT))//2):]))
+        # that will reduce the number of parens and therefore the number of editing errors with mismatched parens
         ABIFT.append(np.real(IFT[int((len(IFT)) / 2):]))
     if args["domain"] == "abs":
         ABIFT.append(abs(IFT[int((len(IFT)) / 2):]))
