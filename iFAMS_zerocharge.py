@@ -21,9 +21,18 @@ file_name = args["input"]
 namebase = os.path.splitext(file_name)[0]
 xfull = []
 yfull = []
+# 
+# I notice you call range(0,len(l)) a lot and it is unnecessary as python handles list iteration for you.
+# Try this instead:
+#   chargestateints = [int(chargestate) for chargestate in chargestatesr]
 chargestateints = [int(chargestatesr[i]) for i in range(0,len(chargestatesr))]
 
 ######### opens each ifft file, and makes one list of lists composed of all of the files ###################
+# Try this instead:
+#   for chargestate in chargestatesr:
+# but it's not clear to me why you are iterating over one list and then using values for the other parallel list.
+# is it really necessary to have two parallel lists? maybe you could just to the float(?)->int()->str() conversion
+# inline?
 for i in range (0,len(chargestatesr)):
     ifftfilename = 0
     iftstring = "IFFT"
